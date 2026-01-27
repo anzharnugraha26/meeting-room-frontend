@@ -31,3 +31,27 @@ export async function POST(req: Request) {
     )
   }
 }
+
+export async function GET() {
+  try {
+    const res = await fetch(`${BASE_URL}/bookings`, {
+      cache: "no-store", // biar selalu fresh
+    })
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      return NextResponse.json(
+        { message: "Gagal mengambil data booking" },
+        { status: res.status }
+      )
+    }
+
+    return NextResponse.json(data)
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Terjadi kesalahan server" },
+      { status: 500 }
+    )
+  }
+}

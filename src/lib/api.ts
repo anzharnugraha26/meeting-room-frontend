@@ -1,0 +1,1 @@
+export const BASE_URL = "https://meeting-room-api-coral.vercel.app/api"

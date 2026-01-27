@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { Room } from '../models/roomModel'
 import { CalendarClock, MapPin, Users, Wifi } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Home() {
   const [rooms, setRooms] = useState<Room[]>([])
@@ -46,13 +47,13 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {rooms.map(room => {
-            const statusColor = room.realtime_status === 'available' 
-              ? 'bg-emerald-100 text-emerald-800' 
+            const statusColor = room.realtime_status === 'available'
+              ? 'bg-emerald-100 text-emerald-800'
               : 'bg-rose-100 text-rose-800'
-            
+
             return (
-              <div 
-                key={room.id} 
+              <div
+                key={room.id}
                 className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
               >
                 <div className="relative overflow-hidden">
@@ -67,25 +68,25 @@ export default function Home() {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <h2 className="text-xl font-bold text-gray-900">{room.name}</h2>
                     <Wifi className="w-5 h-5 text-blue-500" />
                   </div>
-                  
+
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center text-gray-600">
                       <MapPin className="w-4 h-4 mr-2 text-gray-400" />
                       <span className="text-sm">{room.location}</span>
                     </div>
-                    
+
                     <div className="flex items-center text-gray-600">
                       <Users className="w-4 h-4 mr-2 text-gray-400" />
                       <span className="text-sm font-medium">{room.capacity} people</span>
                     </div>
                   </div>
-                  
+
                   {room.next_booking_start && (
                     <div className="pt-5 border-t border-gray-100">
                       <div className="flex items-center text-gray-700">
@@ -105,16 +106,18 @@ export default function Home() {
                       </div>
                     </div>
                   )}
-                  
-                  <button className="mt-6 w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]">
-                    Book Now
-                  </button>
+
+                  <Link href={`/booking/${room.id}`}>
+                    <button className="mt-6 w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]">
+                      Book Now
+                    </button>
+                  </Link>
                 </div>
               </div>
             )
           })}
         </div>
-        
+
         {rooms.length === 0 && !loading && (
           <div className="text-center py-20">
             <div className="text-gray-400 mb-4 text-6xl">🏢</div>

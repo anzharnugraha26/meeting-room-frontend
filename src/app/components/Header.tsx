@@ -1,6 +1,7 @@
 'use client'
 
 import { Building2, Calendar, Search, User } from 'lucide-react'
+import Link from 'next/link'
 
 export function Header() {
     return (
@@ -15,10 +16,10 @@ export function Header() {
                     </div>
 
                     <nav className="hidden md:flex items-center space-x-8">
-                        <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                        <Link href="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                             <Calendar className="inline w-4 h-4 mr-2" />
                             My Bookings
-                        </a>
+                        </Link>
 
                     </nav>
 

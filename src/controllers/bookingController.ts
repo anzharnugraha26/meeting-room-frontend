@@ -2,7 +2,7 @@ import { Booking, BookingPayload } from "../models/bookingModel"
 
 
 export async function createBooking(payload: BookingPayload) {
-  const res = await fetch("/api/booking", {
+  const res = await fetch("/api/bookings", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +20,7 @@ export async function createBooking(payload: BookingPayload) {
 }
 
 export async function getBookings(): Promise<Booking[]> {
-  const res = await fetch("/api/booking")
+  const res = await fetch("/api/bookings")
 
   const data = await res.json()
   if (!res.ok) throw new Error(data.message || "Gagal mengambil booking")

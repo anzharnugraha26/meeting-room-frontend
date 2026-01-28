@@ -56,33 +56,3 @@ export async function GET() {
   }
 }
 
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const { status } = await req.json()
-    const bookingId = params.id
-
-    // Panggil backend Express kamu
-    const response = await fetch(
-      `${BASE_URL}/bookings/${bookingId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status }),
-      }
-    )
-
-    const data = await response.json()
-
-    return NextResponse.json(data, { status: response.status })
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Failed to update booking status" },
-      { status: 500 }
-    )
-  }
-}

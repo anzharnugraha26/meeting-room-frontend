@@ -27,3 +27,16 @@ export async function getBookings(): Promise<Booking[]> {
 
   return data
 }
+
+export async function updateBookingStatus(id: string, status: string) {
+  const res = await fetch(`/api/bookings/${id}/status`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status }),
+  })
+
+  if (!res.ok) throw new Error("Failed to update booking status")
+
+  return res.json()
+}
+

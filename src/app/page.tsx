@@ -85,6 +85,10 @@ export default function Home() {
                       <Users className="w-4 h-4 mr-2 text-gray-400" />
                       <span className="text-sm font-medium">{room.capacity} people</span>
                     </div>
+                    {/* <div className="flex items-center text-gray-600">
+                      <Users className="w-4 h-4 mr-2 text-gray-400" />
+                      <span className="text-sm font-medium">{room.next_booking_start} people</span>
+                    </div> */}
                   </div>
 
                   {room.next_booking_start && (

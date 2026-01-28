@@ -1,6 +1,6 @@
 'use client'
 
-import { Building2, Calendar, Search, User } from 'lucide-react'
+import { Building2, Calendar, ListOrderedIcon, Search, User } from 'lucide-react'
 import Link from 'next/link'
 
 export function Header() {
@@ -20,8 +20,14 @@ export function Header() {
                             <Calendar className="inline w-4 h-4 mr-2" />
                             My Bookings
                         </Link>
+                        <Link href="/booking" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                            <ListOrderedIcon className="inline w-4 h-4 mr-2" />
+                            List Bookings
+                        </Link>
 
                     </nav>
+
+                    {/* cancelled , approved , completed ,  */}
 
                      
                 </div>

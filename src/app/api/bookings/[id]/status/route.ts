@@ -1,13 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
 import { BASE_URL } from "@/src/lib/api"
 
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PATCH(req: NextRequest, context: any) {
   try {
-    const { id: bookingId } = await params   // ⬅️ WAJIB await
-
+    const { id: bookingId } = await context.params   // works for Promise or object
     const { status } = await req.json()
 
     const backendRes = await fetch(
